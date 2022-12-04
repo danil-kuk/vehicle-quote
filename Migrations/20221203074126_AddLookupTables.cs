@@ -1,0 +1,57 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
+
+namespace VehicleQuotes.Migrations;
+
+/// <inheritdoc />
+public partial class AddLookupTables : Migration
+{
+    /// <inheritdoc />
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.CreateTable(
+            name: "bodytypes",
+            columns: table => new
+            {
+                id = table.Column<int>(type: "integer", nullable: false)
+                    .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                name = table.Column<string>(type: "text", nullable: false)
+            },
+            constraints: table => table.PrimaryKey("pk_bodytypes", x => x.id));
+
+        migrationBuilder.CreateTable(
+            name: "makes",
+            columns: table => new
+            {
+                id = table.Column<int>(type: "integer", nullable: false)
+                    .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                name = table.Column<string>(type: "text", nullable: false)
+            },
+            constraints: table => table.PrimaryKey("pk_makes", x => x.id));
+
+        migrationBuilder.CreateTable(
+            name: "sizes",
+            columns: table => new
+            {
+                id = table.Column<int>(type: "integer", nullable: false)
+                    .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                name = table.Column<string>(type: "text", nullable: false)
+            },
+            constraints: table => table.PrimaryKey("pk_sizes", x => x.id));
+    }
+
+    /// <inheritdoc />
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.DropTable(
+            name: "bodytypes");
+
+        migrationBuilder.DropTable(
+            name: "makes");
+
+        migrationBuilder.DropTable(
+            name: "sizes");
+    }
+}
